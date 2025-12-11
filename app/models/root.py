@@ -22,7 +22,7 @@ class ModeData(BaseModel):
 class RootBase(BaseModel):
     """Base model for Root without ID."""
     root: str = Field(..., description="Root text")
-    prim: str = Field(..., description="Primary meaning")
+    prim: Optional[str] = Field(None, description="Primary meaning")
     mode: ModeData = Field(..., description="Mode data with base and optional modes")
 
 
