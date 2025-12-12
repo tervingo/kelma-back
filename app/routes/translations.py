@@ -14,12 +14,6 @@ def get_translation_service(db: AsyncIOMotorDatabase = Depends(get_db)) -> Trans
     return TranslationService(db)
 
 
-@router.get("", response_model=List[Translation])
-async def get_all_translations(service: TranslationService = Depends(get_translation_service)):
-    """Get all translations."""
-    return await service.get_all()
-
-
 @router.get("/search", response_model=List[Translation])
 async def search_translations(
     q: str = Query(..., min_length=1, description="Search query"),
@@ -48,6 +42,12 @@ async def get_translation(
     if not translation:
         raise HTTPException(status_code=404, detail="Translation not found")
     return translation
+
+
+@router.get("", response_model=List[Translation])
+async def get_all_translations(service: TranslationService = Depends(get_translation_service)):
+    """Get all translations."""
+    return await service.get_all()
 
 
 @router.post("", response_model=Translation, status_code=201)
