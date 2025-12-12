@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 
 from .config.database import MongoDB
 from .config.settings import settings
-from .routes import roots
+from .routes import roots, translations
 
 
 @asynccontextmanager
@@ -36,6 +36,7 @@ app.add_middleware(
 
 # Include routers
 app.include_router(roots.router, prefix="/api")
+app.include_router(translations.router, prefix="/api")
 
 
 @app.get("/")
