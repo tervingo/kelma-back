@@ -28,7 +28,7 @@ class TranslationBase(BaseModel):
     """Base model for Translation without ID."""
     kelma: str = Field(..., description="Word in conlang")
     english: str = Field(..., description="English translation")
-    root: str = Field(..., description="Root reference")
+    root: str | None = Field(None, description="Root reference (optional)")
     swadesh: bool = Field(default=False, description="Part of Swadesh list")
     cat: Literal[
         "adjective", "adverb", "conjunction", "interjection",
@@ -75,7 +75,7 @@ class TranslationUpdate(BaseModel):
     """Model for updating a translation (all fields optional)."""
     kelma: Optional[str] = None
     english: Optional[str] = None
-    root: Optional[str] = None
+    root: str | None = None
     swadesh: Optional[bool] = None
     cat: Optional[Literal[
         "adjective", "adverb", "conjunction", "interjection",
