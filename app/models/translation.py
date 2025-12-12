@@ -32,7 +32,7 @@ class TranslationBase(BaseModel):
     swadesh: bool = Field(default=False, description="Part of Swadesh list")
     cat: Literal[
         "adjective", "adverb", "conjunction", "interjection",
-        "noun", "prefix", "pronoun", "quantifier", "suffix", "verb"
+        "noun", "numeral", "prefix", "pronoun", "quantifier", "suffix", "verb"
     ] = Field(..., description="Category")
 
     # Conditional fields
@@ -79,7 +79,7 @@ class TranslationUpdate(BaseModel):
     swadesh: Optional[bool] = None
     cat: Optional[Literal[
         "adjective", "adverb", "conjunction", "interjection",
-        "noun", "prefix", "pronoun", "quantifier", "suffix", "verb"
+        "noun", "numeral", "prefix", "pronoun", "quantifier", "suffix", "verb"
     ]] = None
     noun_type: Optional[Literal["primary", "radical", "deverbal"]] = None
     noun_fields: Optional[NounFields] = None
