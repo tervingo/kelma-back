@@ -6,7 +6,7 @@ from bson import ObjectId
 class NounFields(BaseModel):
     """Fields specific to nouns."""
     abs_plural: str = Field(..., description="Absolutive plural")
-    abs_plural2: str = Field(..., description="Absolutive plural 2")
+    abs_plural2: str | None = Field(None, description="Absolutive plural 2 (optional)")
     erg_plural: str = Field(..., description="Ergative plural")
     gen_plural: str = Field(..., description="Genitive plural")
     dat_plural: str = Field(..., description="Dative plural")
