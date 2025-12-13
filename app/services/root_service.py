@@ -69,3 +69,10 @@ class RootService:
         })
         roots = await cursor.to_list(length=None)
         return [Root(**{**root, "_id": str(root["_id"])}) for root in roots]
+
+    async def get_by_root_value(self, root_value: str) -> Optional[Root]:
+        """Get a root by its root field value (exact match)."""
+        root = await self.collection.find_one({"root": root_value})
+        if root:
+            return Root(**{**root, "_id": str(root["_id"])})
+        return None

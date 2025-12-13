@@ -29,6 +29,18 @@ async def search_roots(
     return await service.search(q)
 
 
+@router.get("/by-value/{root_value}", response_model=Root)
+async def get_root_by_value(
+    root_value: str,
+    service: RootService = Depends(get_root_service)
+):
+    """Get a root by its root field value."""
+    root = await service.get_by_root_value(root_value)
+    if not root:
+        raise HTTPException(status_code=404, detail="Root not found")
+    return root
+
+
 @router.get("/{root_id}", response_model=Root)
 async def get_root(
     root_id: str,
